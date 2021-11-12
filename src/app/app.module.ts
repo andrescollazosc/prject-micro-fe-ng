@@ -1,18 +1,36 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { TableComponent } from './components/table/table.component';
+import { ButtonModalComponent } from './components/button-modal/button-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    TableComponent,
+    ButtonModalComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const tableComponent = createCustomElement(TableComponent, {
+      injector: this.injector
+    });
+
+    const buttonModalComponent = createCustomElement(ButtonModalComponent, {
+      injector: this.injector
+    });
+
+    customElements.define('table-acc-amd', tableComponent);
+    customElements.define('btn-modal-acc-amd', buttonModalComponent);
+  }
+
+
+}

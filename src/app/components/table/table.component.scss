@@ -1,0 +1,17 @@
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.table-icon {
+    font-size: 22px;
+    padding-right: 3px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.table-icon:hover {
+    color: #808080;
+}
+
+
